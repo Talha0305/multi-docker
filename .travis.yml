@@ -1,0 +1,15 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t talha/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run talha/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t talha/multi-client ./client
+  - docker build -t talha/multi-nginx ./nginx
+  - docker build -t talha/multi-server ./server
+  - docker build -t talha/multi-worker ./worker
