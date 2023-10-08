@@ -13,3 +13,10 @@ after_success:
   - docker build -t talha/multi-nginx ./nginx
   - docker build -t talha/multi-server ./server
   - docker build -t talha/multi-worker ./worker
+  # login to dockerhub
+  - echo "$DOCKER_PASSWORD" | docker login -u "DOCKER_ID" --password-stdin
+  # Inlist all images and push them to docker hub
+  - docker push talha/multi-client
+  - docker push talha/multi-nginx
+  - docker push talha/multi-server
+  - docker push talha/multi-worker
