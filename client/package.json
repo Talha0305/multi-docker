@@ -13,6 +13,9 @@
     "react-router-dom": "4.3.1",
     "axios": "0.18.0"
   },
+  "devDependencies": {
+    "@babel/plugin-transform-private-property-in-object": "7.22.11"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
