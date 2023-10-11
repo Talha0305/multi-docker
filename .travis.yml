@@ -4,24 +4,19 @@ services:
   - docker
 
 before_install:
-  - docker build -t talha/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t talhaidrees/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true talha/react-test npm test -- --coverage
+  - docker run -e CI=true talhaidrees/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t talha/multi-client ./client
-  - docker Tag talha/multi-client:latest
-  - docker build -t talha/multi-nginx ./nginx
-  - docker Tag talha/multi-nginx:latest
-  - docker build -t talha/multi-server ./server
-  - docker Tag talha/multi-server:latest
-  - docker build -t talha/multi-worker ./worker
-  - docker Tag talha/multi-worker:latest
-  - systemctl start docker
+  - docker build -t talhaidrees/multi-client ./client
+  - docker build -t talhaidrees/multi-nginx ./nginx
+  - docker build -t talhaidrees/multi-server ./server
+  - docker build -t talhaidrees/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Inlist all images and push them to docker hub
-  - docker push talha/multi-client:latest
-  - docker push talha/multi-nginx:latest
-  - docker push talha/multi-server:latest
-  - docker push talha/multi-worker:latest
+  - docker push talhaidrees/multi-client:latest
+  - docker push talhaidrees/multi-nginx:latest
+  - docker push talhaidrees/multi-server:latest
+  - docker push talhaidrees/multi-worker:latest
