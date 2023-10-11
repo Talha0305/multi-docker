@@ -16,7 +16,7 @@ after_success:
   - docker build -t talhaidrees/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Inlist all images and push them to docker hub
-  - docker push talhaidrees/multi-client:latest
-  - docker push talhaidrees/multi-nginx:latest
-  - docker push talhaidrees/multi-server:latest
-  - docker push talhaidrees/multi-worker:latest
+  - docker push talhaidrees/multi-client
+  - docker push talhaidrees/multi-nginx
+  - docker push talhaidrees/multi-server
+  - docker push talhaidrees/multi-worker
