@@ -10,13 +10,13 @@ script:
   - docker run -e CI=true talha/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t talha/multi-client1 ./client
-  - docker build -t talha/multi-nginx1 ./nginx
-  - docker build -t talha/multi-server1 ./server
-  - docker build -t talha/multi-worker1 ./worker
+  - docker build -t talhaidrees/multi-client ./client
+  - docker build -t talhaidrees/multi-nginx ./nginx
+  - docker build -t talhaidrees/multi-server ./server
+  - docker build -t talhaidrees/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Inlist all images and push them to docker hub
-  - docker push talhaidrees/multi-client1
-  - docker push talhaidrees/multi-nginx1
-  - docker push talhaidrees/multi-server1
-  - docker push talhaidrees/multi-worker1
+  - docker push talhaidrees/multi-client
+  - docker push talhaidrees/multi-nginx
+  - docker push talhaidrees/multi-server
+  - docker push talhaidrees/multi-worker
